@@ -1,8 +1,8 @@
 package oop_00000108084_NicholasWijaya.week01
 
 fun main() {
-    var name: String ="Jhon Thor"
-    var score: Int = 80
+    val name ="Jhon Thor"
+    val score = 80
 
-    println("Nama: "+ name + ", Nilai: "+ score)
+    println("Name: $name, Nilai: $score")
 }
