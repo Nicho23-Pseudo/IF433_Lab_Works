@@ -9,5 +9,12 @@ class Student(val name: String, val nim: String, var major: String) {
         } else {
             println("LOG: Objek Student $name berhasil dialokasikan di Memory.")
         }
+
+
+    }
+    // Secondary Constructor
+    // Wajib memanggil Primary Constructor menggunakan 'this()'
+    constructor(name: String, nim: String) : this(name, nim, major = "Non-Matriculated") {
+        println("LOG: Menggunakan constructor jalur umum (Tanpa Jurusan).")
     }
 }
