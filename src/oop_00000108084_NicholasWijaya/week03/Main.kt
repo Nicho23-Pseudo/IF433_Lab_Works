@@ -10,7 +10,7 @@ fun main() {
 
     // 2. TEst Encapsulation
     e.increasePerformance()
-    e.performanceRating = 5 // Coba uncomment, pasti Merah (Error)
+    // e.performanceRating = 5 // Coba uncomment, pasti Merah (Error)
 
     // 3. Test Computed Property
     println("Pajak yang harus dibayar: ${e.tax}")
