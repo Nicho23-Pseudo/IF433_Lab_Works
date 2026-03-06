@@ -9,5 +9,13 @@ fun main() {
 
     for (payment in payments) {
         payment.proccessPayment(75000.0)
+
+        if (payment is EWallet) {
+            println("Saldo tidak cukup, melakukan top up...")
+            payment.topUp(50000.0)
+            payment.proccessPayment(75000.0)
+        }
+
+        println()
     }
 }
