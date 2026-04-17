@@ -37,8 +37,17 @@ fun main() {
         }
     }
 
-    val someObject: Any = String // Tipe asli Integer
+    val someObject: Any = 100 // Tipe asli Integer
     // Coba cast ke String. jika gagal (null), ganti dengan "Unknown String"
     val safeString = someObject as? String ?: "Unknown String"
     println("Hasil cast + fallback: $safeString")
+
+    println("\n=== TEST THE RED BUTTON (!!) ===")
+    val toxicData: String? = null
+    try {
+        // DANGEROUS: MEmaksa compiler percata data ini tidak null
+        val length = toxicData!!.length
+    } catch (e: NullPointerException) {
+        println("CRASH (NPE)! jangan gunakan !! secara sembarangan.")
+    }
 }
