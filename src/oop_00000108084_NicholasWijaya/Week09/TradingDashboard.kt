@@ -41,3 +41,4 @@ fun main() {
 
     println("\n--- TRADED PAIRS ---")
     println(uniquePairs)
+}
