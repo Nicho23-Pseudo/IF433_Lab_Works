@@ -28,5 +28,5 @@ fun main() {
 
     txRepo.getAll().forEach {
         println("Transaction ID: ${it.id} | Amount: ${it.amount}")
-    }
+    } // berhasil di jalankan tanpa error
 }
