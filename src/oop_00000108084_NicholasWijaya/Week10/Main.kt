@@ -1,5 +1,7 @@
 package oop_00000108084_NicholasWijaya.Week10
 
+import sun.management.MemoryUsageCompositeData.getMax
+
 fun main() {
     println("=== TEST GENERIC CLASS ===")
     val intBox = Box(100)
@@ -16,4 +18,9 @@ fun main() {
     printData(3.14)
     val result = processData("Stable Coin")
     println("Hasil proses: $result")
+
+    println("\n=== TEST CONSTRAINTS ===")
+    val math = MathBox(10.5, 20)
+    println("Total: ${math.sum()}")
+    println("Terbesar: ${getMax(45, 90)}")
 }
