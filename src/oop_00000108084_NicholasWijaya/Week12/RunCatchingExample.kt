@@ -13,4 +13,12 @@ fun main() {
     // Pattern: recover (bisa mengubah tipe kegagalan jadi sukses)
     val recovered = result.recover { 0 }.getOrNull()
     println("Recovered value: $recovered")
+
+    runCatching {
+        "100".toInt()
+    }.onSuccess { v ->
+        println("Berhasil di konversi: $v")
+    }.onFailure { e ->
+        println("Gagal konversi: ${e.message}")
+    }
 }
