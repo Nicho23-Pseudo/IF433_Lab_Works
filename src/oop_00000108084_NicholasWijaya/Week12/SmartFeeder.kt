@@ -57,4 +57,4 @@ fun main() {
         println("Peringatan ke Pemilik: ${error.message}")
         println("(Opsional: Berikan chiken jerky secara manual)")
     }
-}
+} // Berjalan dengan lancar
