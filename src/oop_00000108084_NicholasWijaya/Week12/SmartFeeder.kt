@@ -53,5 +53,8 @@ fun main() {
         println(
             "Makan sore sukses! Sisa stok kibble: $currentKibbleStock gr"
         )
+    }.onFailure { error ->
+        println("Peringatan ke Pemilik: ${error.message}")
+        println("(Opsional: Berikan chiken jerky secara manual)")
     }
 }
