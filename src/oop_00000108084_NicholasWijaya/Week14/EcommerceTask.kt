@@ -13,9 +13,9 @@ class CsvOrderRepository : OrderRepository {
         email: String
     ) {
 
-        File("orders.csv").bufferedWriter().use { writer ->
-            writer.append("$customerType,$finalPrice,$email\n")
-        }
+        File("orders.csv").appendText(
+            "$customerType,$finalPrice,$email\n"
+        )
     }
 }
 
@@ -30,6 +30,25 @@ class EmailNotifier : NotificationService {
     }
 }
 
+// OCP Fix
+interface PricingStrategy {
+    fun calculate(price: Double): Double
+}
+
+class VipPricing : PricingStrategy {
+
+    override fun calculate(price: Double): Double {
+        return price * 0.8
+    }
+}
+
+class RegularPricing : PricingStrategy {
+
+    override fun calculate(price: Double): Double {
+        return price
+    }
+}
+
 class SafeOrderProcessor(
     private val repo: OrderRepository,
     private val notifier: NotificationService
@@ -37,11 +56,15 @@ class SafeOrderProcessor(
 
     fun processOrder(
         customerType: String,
-        finalPrice: Double,
-        email: String
+        amount: Double,
+        email: String,
+        pricingStrategy: PricingStrategy
     ) {
 
+        val finalPrice = pricingStrategy.calculate(amount)
+
         repo.saveOrder(customerType, finalPrice, email)
+
         notifier.sendNotification(email, finalPrice)
     }
 }
@@ -53,9 +76,20 @@ fun main() {
 
     val processor = SafeOrderProcessor(repository, notifier)
 
+    val vipPricing = VipPricing()
+    val regularPricing = RegularPricing()
+
     processor.processOrder(
         "VIP",
-        400000.0,
-        "customer@gmail.com"
+        500000.0,
+        "vip@gmail.com",
+        vipPricing
+    )
+
+    processor.processOrder(
+        "Regular",
+        300000.0,
+        "regular@gmail.com",
+        regularPricing
     )
 }
